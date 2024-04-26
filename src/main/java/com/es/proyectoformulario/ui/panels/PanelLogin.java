@@ -46,33 +46,33 @@ public class PanelLogin extends JPanel {
         }
     };
     public PanelLogin() {
-        this.setBackground(new Color(174, 139, 225));
+        this.setBackground(new Color(134, 171, 194));
         this.setLayout(null);
 
         JLabel usuario = new JLabel("Usuario: ");
-        usuario.setLocation(new Point(200,135));
-        usuario.setSize(new Dimension(152,32));
+        usuario.setLocation(new Point(150,168));
+        usuario.setSize(new Dimension(150, 32));
         // usuario.setFont(new Font("Consolas", Font.BOLD, 22));
         this.add(usuario);
 
-        user = new JTextField("Introduzca su usuario");
-        user.setLocation(new Point(260,135));
-        user.setSize(new Dimension(152,32));
+        user = new JTextField();
+        user.setLocation(new Point(250, 168));
+        user.setSize(new Dimension(150,32));
         this.add(user);
 
         JLabel passwd = new JLabel("Passwd: ");
-        passwd.setLocation(new Point(200,200));
+        passwd.setLocation(new Point(150, 218));
         passwd.setSize(new Dimension(152,32));
         this.add(passwd);
 
         pass = new JPasswordField();
-        pass.setLocation(new Point(260,200));
-        pass.setSize(new Dimension(152,32));
+        pass.setLocation(new Point(250, 218));
+        pass.setSize(new Dimension(150,32));
         this.add(pass);
 
         bEnviar = new JButton("Enviar");
-        bEnviar.setLocation(new Point(220,321));
-        bEnviar.setSize(new Dimension(152,32));
+        bEnviar.setLocation(new Point(220, 268));
+        bEnviar.setSize(new Dimension(130, 32));
         this.add(bEnviar);
         bEnviar.addMouseListener(listenerMouse);
 
