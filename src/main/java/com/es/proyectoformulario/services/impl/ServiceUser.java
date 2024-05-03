@@ -53,7 +53,7 @@ public class ServiceUser {
         gestionUser.modificarFichero(this.users, this.ruta);
     }
 
-    public void altaUsuario() {
+    public boolean altaUsuario(User usuario) {
         // 1. Longitud max de todos los campos 20
         // NO pueden contener el símbolo :
         // El IdUser no puede repetirse
