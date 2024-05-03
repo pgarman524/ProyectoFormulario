@@ -18,8 +18,8 @@ public class FrameLogin extends JFrame {
 
         // Para que vuelva a activarse el primer panel, descomentar esto:
 
-      //  PanelLogin p = new PanelLogin();
-      //   this.add(p);
+      //PanelLogin p = new PanelLogin();
+      // this.add(p);
 
         // ------------------------------
 

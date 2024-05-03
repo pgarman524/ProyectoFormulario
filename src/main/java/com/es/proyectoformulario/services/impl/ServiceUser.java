@@ -1,9 +1,12 @@
 package com.es.proyectoformulario.services.impl;
 
 import com.es.proyectoformulario.model.User;
+import com.es.proyectoformulario.ui.panels.PanelAlta;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.*;
+
 
 public class ServiceUser {
 
@@ -50,4 +53,29 @@ public class ServiceUser {
         gestionUser.modificarFichero(this.users, this.ruta);
     }
 
+    public void altaUsuario() {
+        // 1. Longitud max de todos los campos 20
+        // NO pueden contener el símbolo :
+        // El IdUser no puede repetirse
+        PanelAlta p = new PanelAlta();
+
+
+        if (p.idUserText.getText().length() < 20 || p.pass1Texto.getText().length() < 20 || p.pass2Texto.getText().length() < 20 || p.isAdmin.getSelectedItem().toString().length() < 20) {
+
+            if (p.idUserText.getText().contains(":") || p.pass1Texto.getText().contains(":") || p.pass2Texto.getText().contains(":")) {
+                if (p.idUserText.getText().equals(users.toString())) {
+
+                    gestionUser.anadirFichero(, ruta);
+                    users.add();
+
+
+                }
+
+            }
+
+
+        }
+
+
+    }
 }
