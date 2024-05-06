@@ -15,16 +15,16 @@ public class FrameLogin extends JFrame {
         this.setIconImage(image.getImage());
         this.setResizable(false);
 
+        PanelAlta pAlta = new PanelAlta(this);
+        this.add(pAlta);
 
         // Para que vuelva a activarse el primer panel, descomentar esto:
 
-      //PanelLogin p = new PanelLogin();
-      // this.add(p);
+      PanelLogin p = new PanelLogin(this);
+      this.add(p);
 
         // ------------------------------
 
-        PanelAlta pAlta = new PanelAlta();
-        this.add(pAlta);
 
         this.setVisible(true);
     }

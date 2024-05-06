@@ -53,6 +53,8 @@ public class ServiceUser {
         gestionUser.modificarFichero(this.users, this.ruta);
     }
 
+
+    /**
     public boolean altaUsuario(User usuario) {
         // 1. Longitud max de todos los campos 20
         // NO pueden contener el símbolo :
@@ -65,7 +67,7 @@ public class ServiceUser {
             if (p.idUserText.getText().contains(":") || p.pass1Texto.getText().contains(":") || p.pass2Texto.getText().contains(":")) {
                 if (p.idUserText.getText().equals(users.toString())) {
 
-                    gestionUser.anadirFichero(, ruta);
+                    gestionUser.anadirFichero(users, ruta);
                     users.add();
 
 
@@ -78,4 +80,5 @@ public class ServiceUser {
 
 
     }
+     **/
 }
