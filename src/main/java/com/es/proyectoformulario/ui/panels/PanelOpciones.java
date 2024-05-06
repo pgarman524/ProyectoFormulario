@@ -17,6 +17,17 @@ public class PanelOpciones extends JPanel {
     JButton bConsulta;
 
 
+    JButton home;
+    String casa = "src/main/resources/pokemonMedia/images/hogar.png";
+    ImageIcon icon1 = new ImageIcon(casa);
+
+    String casa2 = "src/main/resources/pokemonMedia/images/hogarGris.png";
+    ImageIcon icon2 = new ImageIcon(casa2);
+
+    String casa3 = "src/main/resources/pokemonMedia/images/hogarBl.png";
+    ImageIcon icon3 = new ImageIcon(casa3);
+
+
     MouseListener listenerMouseAlta = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -36,6 +47,26 @@ public class PanelOpciones extends JPanel {
 
         }
     };
+
+    MouseListener listenerMouseHome = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+            goHome();
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            home.setIcon(icon3);
+            // home.setIcon(icon2);
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            home.setIcon(icon1);
+        }
+    };
+
 
     MouseListener listenerMouseBaja = new MouseAdapter() {
         @Override
@@ -130,6 +161,18 @@ public class PanelOpciones extends JPanel {
         bConsulta.setSize(new Dimension(130, 32));
         bConsulta.addMouseListener(listenerMouseCosulta);
         this.add(bConsulta);
+
+        home = new JButton();
+        home.setIcon(icon1);
+        home.setLocation(new Point(45, 480));
+        home.setSize(new Dimension(32, 32));
+        home.setOpaque(false);
+        home.setContentAreaFilled(false);
+        home.setBorderPainted(false);
+        home.addMouseListener(listenerMouseHome);
+        this.add(home);
+
+
     }
     private void cargarPanelAlta() {
         //this es PanelLogin, pero este exacto PanelLogin. No otro...
@@ -157,4 +200,19 @@ public class PanelOpciones extends JPanel {
         framePadre.revalidate();
 
     }
+
+    private void goHome() {
+        //this es PanelLogin, pero este exacto PanelLogin. No otro...
+        framePadre.remove(this);
+
+        //añadimos un panelAlta al frame para que ahora aparezca este
+        PanelLogin panelHome = new PanelLogin(framePadre);
+        framePadre.add(panelHome);
+
+        //Tenemos que actualizar lo que tiene el frame manualmente
+        framePadre.repaint();
+        framePadre.revalidate();
+
+    }
+
 }

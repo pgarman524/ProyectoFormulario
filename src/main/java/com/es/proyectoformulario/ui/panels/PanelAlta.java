@@ -36,6 +36,37 @@ public class PanelAlta extends JPanel {
 
     ServiceUser s = new ServiceUser();
 
+    JButton home;
+    String casa = "src/main/resources/pokemonMedia/images/hogar.png";
+    ImageIcon icon1 = new ImageIcon(casa);
+
+    String casa2 = "src/main/resources/pokemonMedia/images/hogarGris.png";
+    ImageIcon icon2 = new ImageIcon(casa2);
+
+    String casa3 = "src/main/resources/pokemonMedia/images/hogarBl.png";
+    ImageIcon icon3 = new ImageIcon(casa3);
+
+
+    MouseListener listenerMouseHome = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+            goHome();
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            home.setIcon(icon3);
+            // home.setIcon(icon2);
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            home.setIcon(icon1);
+        }
+    };
+
+
 
     MouseListener listenerMouse = new MouseAdapter() {
         @Override
@@ -139,9 +170,29 @@ public class PanelAlta extends JPanel {
 
         ServiceUser serviceUser = new ServiceUser();
 
-
+        home = new JButton();
+        home.setIcon(icon1);
+        home.setLocation(new Point(45, 480));
+        home.setSize(new Dimension(32, 32));
+        home.setOpaque(false);
+        home.setContentAreaFilled(false);
+        home.setBorderPainted(false);
+        home.addMouseListener(listenerMouseHome);
+        this.add(home);
     }
 
 
+    private void goHome() {
+        //this es PanelLogin, pero este exacto PanelLogin. No otro...
+        framePadre.remove(this);
 
+        //añadimos un panelAlta al frame para que ahora aparezca este
+        PanelLogin panelHome = new PanelLogin(framePadre);
+        framePadre.add(panelHome);
+
+        //Tenemos que actualizar lo que tiene el frame manualmente
+        framePadre.repaint();
+        framePadre.revalidate();
+
+    }
 }

@@ -7,9 +7,7 @@ import com.es.proyectoformulario.ui.frames.FrameLogin;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 /**
  * @author Pablo Macías
@@ -24,6 +22,7 @@ public class PanelLogin extends JPanel {
 
     ServiceUser serviceUser = new ServiceUser();
 
+
     MouseListener listenerMouse = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -36,19 +35,22 @@ public class PanelLogin extends JPanel {
             }
         }
 
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            JButton b = (JButton) e.getSource();
-            b.setBackground(new Color(135, 206, 250)); // Fondo azul claro
-            b.setBorder(new LineBorder(new Color(0, 115, 183), 3)); // Borde azul oscuro
-        }
 
-        @Override
-        public void mouseExited(MouseEvent e) {
-            JButton b = (JButton) e.getSource();
-            b.setBackground(new Color(102, 153, 204)); // Fondo azul medio
-            b.setBorder(new LineBorder(new Color(135, 206, 250), 3)); // Borde azul claro
-        }
+        /**
+         * @Override
+         *         public void mouseEntered(MouseEvent e) {
+         *             JButton b = (JButton) e.getSource();
+         *             b.setBackground(new Color(135, 206, 250)); // Fondo azul claro
+         *             b.setBorder(new LineBorder(new Color(0, 115, 183), 3)); // Borde azul oscuro
+         *         }
+         *
+         *         @Override
+         *         public void mouseExited(MouseEvent e) {
+         *             JButton b = (JButton) e.getSource();
+         *             b.setBackground(new Color(102, 153, 204)); // Fondo azul medio
+         *             b.setBorder(new LineBorder(new Color(135, 206, 250), 3)); // Borde azul claro
+         *         }
+         */
     };
 
     MouseListener listenerMouseAlta = new MouseAdapter() {
@@ -87,18 +89,30 @@ public class PanelLogin extends JPanel {
         this.add(pass);
 
         bEnviar = new JButton("Enviar");
-        bEnviar.setLocation(new Point(290, 268));
+        bEnviar.setLocation(new Point(130, 268));
         bEnviar.setSize(new Dimension(130, 32));
         bEnviar.addMouseListener(listenerMouse);
         this.add(bEnviar);
 
         bAlta = new JButton("Alta");
-        bAlta.setLocation(new Point(130, 268));
+        bAlta.setLocation(new Point(290, 268));
         bAlta.setSize(new Dimension(130, 32));
         bAlta.addMouseListener(listenerMouseAlta);
         this.add(bAlta);
 
+// para que al pulsar enter te dirija al panelOpciones
+        bEnviar.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    cargarPanelOpciones();
+                }
+            }
+        });
+
     }
+
+
 
     private void cargarPanelOpciones() {
         //this es PanelLogin, pero este exacto PanelLogin. No otro...
@@ -128,4 +142,6 @@ public class PanelLogin extends JPanel {
         framePadre.revalidate();
 
     }
+
+
 }
