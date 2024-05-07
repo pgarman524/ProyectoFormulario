@@ -37,6 +37,15 @@ public class ServiceUser {
         return false;
     }
 
+    public User buscarUsuario(String idUser){
+        for (int i = 0; i < this.users.size(); i++) {
+            if (idUser.equals(users.get(i))){
+            return users.get(i);
+               }
+        }
+        return null;
+    }
+
     public boolean userExists(String idUser) {
         return this.users.stream().anyMatch(user -> user.getId().equalsIgnoreCase(idUser));
     }

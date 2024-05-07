@@ -1,5 +1,7 @@
 package com.es.proyectoformulario.ui.panels;
 
+import com.es.proyectoformulario.services.impl.GestionFicheroUser;
+import com.es.proyectoformulario.services.impl.ServiceUser;
 import com.es.proyectoformulario.ui.frames.FrameLogin;
 
 import javax.swing.*;
@@ -32,10 +34,22 @@ public class PanelConsulta extends JPanel {
     String goBackW = "src/main/resources/pokemonMedia/images/goBackBl.png";
     ImageIcon iconBackW = new ImageIcon(goBackW);
 
+    // -------------------------------
+    GestionFicheroUser g = new GestionFicheroUser();
+    String ruta = "src/main/resources/users/users.txt";
+
+    ServiceUser s = new ServiceUser();
+    // -------------------------------
+
 
     MouseListener listenerMouse = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
+            String usuario = idCOnsultar.getText();
+            if (s.userExists(usuario)) {
+
+            }
+
 
         }
 
@@ -51,14 +65,13 @@ public class PanelConsulta extends JPanel {
     MouseListener listenerMouseHome = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-
             goHome();
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
             home.setIcon(icon3);
-           // home.setIcon(icon2);
+            // home.setIcon(icon2);
         }
 
         @Override
@@ -71,7 +84,7 @@ public class PanelConsulta extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
 
-          goBack();
+            goBack();
         }
 
         @Override
@@ -94,10 +107,11 @@ public class PanelConsulta extends JPanel {
 
         consultar = new JButton("Consultar");
         // consultar.setIcon(icon);
-       // consultar.setBackground(null);
+        // consultar.setBackground(null);
         consultar.setLocation(new Point(310, 158));
         consultar.setSize(new Dimension(150, 32));
         // usuario.setFont(new Font("Consolas", Font.BOLD, 22));
+        consultar.addMouseListener(listenerMouse);
         this.add(consultar);
 
         idCOnsultar = new JTextField();
@@ -146,6 +160,7 @@ public class PanelConsulta extends JPanel {
         framePadre.revalidate();
 
     }
+
     private void goBack() {
         //this es PanelLogin, pero este exacto PanelLogin. No otro...
         framePadre.remove(this);

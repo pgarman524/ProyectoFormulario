@@ -71,7 +71,7 @@ public class PanelOpciones extends JPanel {
     MouseListener listenerMouseBaja = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-
+            cargarPanelBaja();
 
         }
 
@@ -194,6 +194,20 @@ public class PanelOpciones extends JPanel {
         //añadimos un panelAlta al frame para que ahora aparezca este
         PanelConsulta panelConsulta = new PanelConsulta(framePadre);
         framePadre.add(panelConsulta);
+
+        //Tenemos que actualizar lo que tiene el frame manualmente
+        framePadre.repaint();
+        framePadre.revalidate();
+
+    }
+
+    private void cargarPanelBaja() {
+        //this es PanelLogin, pero este exacto PanelLogin. No otro...
+        framePadre.remove(this);
+
+        //añadimos un panelAlta al frame para que ahora aparezca este
+        PanelBaja panelBaja = new PanelBaja(framePadre);
+        framePadre.add(panelBaja);
 
         //Tenemos que actualizar lo que tiene el frame manualmente
         framePadre.repaint();
