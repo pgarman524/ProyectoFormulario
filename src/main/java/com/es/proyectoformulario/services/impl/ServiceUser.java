@@ -1,6 +1,7 @@
 package com.es.proyectoformulario.services.impl;
 
 import com.es.proyectoformulario.model.User;
+import com.es.proyectoformulario.ui.frames.FrameLogin;
 import com.es.proyectoformulario.ui.panels.PanelAlta;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class ServiceUser {
 
     public User buscarUsuario(String idUser){
         for (int i = 0; i < this.users.size(); i++) {
-            if (idUser.equals(users.get(i))){
+            if (users.get(i).getId().equals(idUser)){
             return users.get(i);
                }
         }
@@ -62,6 +63,13 @@ public class ServiceUser {
         gestionUser.modificarFichero(this.users, this.ruta);
     }
 
+
+    public void altaUsuarioMouse(User u){
+
+        if (u.getId().length() < 20 || u.getName().length() < 20 || u.getPass().length() < 20) {
+            gestionUser.anadirFichero(u, ruta);
+        }
+    }
 
     /**
     public boolean altaUsuario(User usuario) {

@@ -47,7 +47,7 @@ public class PanelConsulta extends JPanel {
         public void mouseClicked(MouseEvent e) {
             String usuario = idCOnsultar.getText();
             if (s.userExists(usuario)) {
-
+                texto.setText(s.buscarUsuario(usuario).toString());
             }
 
 
@@ -114,7 +114,7 @@ public class PanelConsulta extends JPanel {
         consultar.addMouseListener(listenerMouse);
         this.add(consultar);
 
-        idCOnsultar = new JTextField();
+        idCOnsultar = new JTextField("Introduzca su idUser");
         idCOnsultar.setLocation(new Point(110, 158));
         idCOnsultar.setSize(new Dimension(150, 32));
         this.add(idCOnsultar);

@@ -52,7 +52,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "El user se llama "+this.name+" con id: "+this.id;
+        return "El user se llama "+this.name+" con id: "+this.id +" y la contrasenia es: " + this.pass;
     }
 
     @Override

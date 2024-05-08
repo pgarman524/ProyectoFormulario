@@ -1,5 +1,7 @@
 package com.es.proyectoformulario.ui.panels;
 
+import com.es.proyectoformulario.model.User;
+import com.es.proyectoformulario.services.impl.GestionFicheroUser;
 import com.es.proyectoformulario.services.impl.ServiceUser;
 import com.es.proyectoformulario.ui.frames.FrameLogin;
 
@@ -36,6 +38,8 @@ public class PanelAlta extends JPanel {
 
     ServiceUser s = new ServiceUser();
 
+    GestionFicheroUser g = new GestionFicheroUser();
+
     JButton home;
     String casa = "src/main/resources/pokemonMedia/images/hogar.png";
     ImageIcon icon1 = new ImageIcon(casa);
@@ -45,6 +49,7 @@ public class PanelAlta extends JPanel {
 
     String casa3 = "src/main/resources/pokemonMedia/images/hogarBl.png";
     ImageIcon icon3 = new ImageIcon(casa3);
+
 
 
     MouseListener listenerMouseHome = new MouseAdapter() {
@@ -67,25 +72,20 @@ public class PanelAlta extends JPanel {
     };
 
 
-
     MouseListener listenerMouse = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
             if (idUserText.getText().isEmpty() || nombreTexto.getText().isEmpty() || pass1Texto.getText().isEmpty() || pass2Texto.getText().isEmpty()) {
-                if (pass1Texto.getText().equals(pass2Texto)) {
+                mensaje.setText("Hay un campo vacio, por favor compruebe de nuevo");
+
+            }else {
+                if (pass1Texto.getText().equals(pass2Texto.getText())) {
                     if (!s.checkUser(idUserText.getText(), pass1Texto.getText())) {
+                        User user = new User(idUserText.getText(), nombreTexto.getText(), pass1Texto.getText(), isAdminCheck());
 
-                    } else {
-                        mensaje.setText("El usuario ya existe");
+                        s.altaUsuarioMouse(user);
                     }
-
-                } else {
-                    mensaje.setText("La contraseña no coincide");
                 }
-
-
-            } else {
-                mensaje.setText("Los campos no han sido rellenados");
             }
 
         }
@@ -163,12 +163,15 @@ public class PanelAlta extends JPanel {
         alta = new JButton("Alta");
         alta.setLocation(new Point(175, 428));
         alta.setSize(new Dimension(150, 32));
+        alta.addMouseListener(listenerMouse);
         this.add(alta);
 
-        mensaje = new JLabel();
-        mensaje.setLocation(new Point(15, 590));
 
-        ServiceUser serviceUser = new ServiceUser();
+        mensaje = new JLabel();
+        mensaje.setLocation(new Point(85, 488));
+        mensaje.setSize(new Dimension(450, 32));
+        this.add(mensaje);
+
 
         home = new JButton();
         home.setIcon(icon1);
@@ -195,4 +198,14 @@ public class PanelAlta extends JPanel {
         framePadre.revalidate();
 
     }
+
+    public boolean isAdminCheck(){
+        if (isAdmin.getActionCommand().equalsIgnoreCase("si")){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }
